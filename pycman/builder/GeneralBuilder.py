@@ -73,15 +73,6 @@ class Builder(BaseBuilder):
             README.rst
         home-page = http://example.com
         requires-python = >= 3.4
-        classifier =
-            Development Status:: 4 - Beta
-            Environment:: Console
-            Environment:: OpenStack
-            Intended Audience:: Developers
-            Intended Audience:: Information Technology
-            License: : OSI Approved : : Apache Software License
-            Operating System:: OS Independent
-            Programming Language:: Python
 
         [files]
         packages = 
