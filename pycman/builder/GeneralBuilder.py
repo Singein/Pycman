@@ -12,7 +12,7 @@ class Builder(BaseBuilder):
         self.name = input('Project name: ')
         if not len(self.name):
             raise InitError("project name can't be empty.")
-
+        os.mkdir(self.name)
         self.author = input('Author: ')
         if not len(self.author):
             raise InitError("author can't be empty.")
