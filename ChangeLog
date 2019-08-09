@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+v0.0.2
+------
+
+* fixed: FileNotFound Error
 * Refactor(builder): added builder module
 * added initial.py
 * added: xmind

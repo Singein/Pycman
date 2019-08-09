@@ -53,6 +53,7 @@ class Builder(BaseBuilder):
 
     def init_git(self):
         print(' -> create git repository...')
+        os.chdir(os.path.join(CONTEXT, self.name))
         os.system('git init')
         print(' -> create .gitignore...')
         default_ignores = ['venv/', '__pycache__/']
