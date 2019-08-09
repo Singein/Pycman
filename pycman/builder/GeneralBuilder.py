@@ -61,7 +61,8 @@ class Builder(BaseBuilder):
             f.write('\n'.join(default_ignores))
 
     def init_pbr(self):
-        pbr_cfg = textwrap.dedent("""[metadata]
+        pbr_cfg = textwrap.dedent("""
+        [metadata]
         name = %s
         author = %s
         author-email = %s
@@ -91,7 +92,8 @@ class Builder(BaseBuilder):
             cmd=package.module:function
         """ % (self.name, self. author, self.email))
 
-        setup_script = textwrap.dedent("""import setuptools
+        setup_script = textwrap.dedent("""
+        import setuptools
         setuptools.setup(setup_requires=['pbr'], pbr=True)
         """)
         with open(os.path.join(CONTEXT, self.name, 'setup.cfg'), 'w', encoding="utf-8") as cfg:
