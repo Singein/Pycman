@@ -1,12 +1,12 @@
-from initial import init_project
+from pycman.build import build
 import os
 import fire
 
 CONTEXT = os.path.abspath(os.getcwd())
 
 
-def create():
-    init_project()
+def create(project_type='GeneralBuilder'):
+    build(project_type)
 
 
 def run(script=None):
@@ -18,8 +18,12 @@ def run(script=None):
     os.system(pro.scripts[script])
 
 
-if __name__ == "__main__":
+def main():
     fire.Fire({
         'create': create,
         'run': run
     })
+
+
+if __name__ == "__main__":
+    main()
