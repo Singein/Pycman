@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+v0.1.2
+------
+
+* refactor: 移除无关代码
 * refactor: 试试新的commitzen工具
 
 v0.1.0
