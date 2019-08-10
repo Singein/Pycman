@@ -6,6 +6,7 @@ package_info = {
 }
 
 scripts = {
+    'commit': 'cz c',
     'build': 'python setup.py bdist_wheel',
     'default': 'echo 请输入明确的命令名称'
 }
