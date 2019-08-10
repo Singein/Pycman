@@ -9,31 +9,31 @@ class BaseBuilder(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def init_meta_data(self):
-        pass
+        """init project metadata"""
 
     @abc.abstractmethod
     def init_requirements(self):
-        pass
+        """init project requirements.txt"""
 
     @abc.abstractmethod
     def init_project_manager(self):
-        pass
+        """create a templated package.py"""
 
     @abc.abstractmethod
     def init_venv(self):
-        pass
+        """create venv"""
 
     @abc.abstractmethod
     def init_git(self):
-        pass
+        """init git repository"""
 
     @abc.abstractmethod
     def init_pbr(self):
-        pass
+        """init setup.py and setup.cfg"""
 
     @abc.abstractmethod
     def init_readme(self):
-        pass
+        """init readme"""
 
 
 class Director:

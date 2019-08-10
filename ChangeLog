@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+v0.1.0
+------
+
+* fixed: pbr cfg
 * feat: add build cmd
 
 v0.0.3
