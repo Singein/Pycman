@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+v0.1.1
+------
+
+* build(package.py): removed version, changed commit script
+* docs(ChangeLog): update changelog
+
 v0.1.2
 ------
 
