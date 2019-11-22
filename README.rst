@@ -4,11 +4,11 @@ Pycman
 
 feature
 
-- 可自定义模板配置项目初始化流程
-- 支持像 NPM 项目中，对 package.json 的 script 配置中，自定义指令配置，使用 pyc run <command>
-- 支持 pbr 工程配置模板生成
-- 可更具`git tag`自动生成`changelog`
-- 集成 `commitizen` 工具
+可自定义模板配置项目初始化流程
+支持像 NPM 项目中，对 package.json 的 script 配置中，自定义指令配置，使用 pyc run <command>
+支持 pbr 工程配置模板生成
+可更具`git tag`自动生成`changelog`
+集成 `commitizen` 工具
 
 Qucik Start
 
