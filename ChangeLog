@@ -1,6 +1,7 @@
 CHANGES
 =======
 
+* docs(README.rst): rewrite README.rst
 * docs(README.rst): fixed rst format error
 * docs(README): 补充了README文档
 * docs(changelog): release [v0.1.1]
