@@ -1,5 +1,6 @@
 package_info = {
     'name': 'Pycman',
+    'version': '0.1.4',
     'author': 'singein',
     'email': 'singein@outlook.com'
 }

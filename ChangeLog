@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+v0.1.2
+------
+
+* docs(ChangeLog): update changelog
 * docs(README.rst): rewrite README.rst
 * docs(README.rst): fixed rst format error
 * docs(README): 补充了README文档
@@ -11,10 +15,6 @@ v0.1.1
 
 * build(package.py): removed version, changed commit script
 * docs(ChangeLog): update changelog
-
-v0.1.2
-------
-
 * refactor: 移除无关代码
 * refactor: 试试新的commitzen工具
 

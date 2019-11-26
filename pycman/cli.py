@@ -15,7 +15,22 @@ def run(script=None):
     script = script or 'default'
     sys.path.append(CONTEXT)
     pro = importlib.__import__('package')
-    os.system(pro.scripts[script])
+    os.system(pro.scripts.get(script, 'default'))
+
+
+def build():
+    """
+    执行PBR构建
+    """
+    os.system('python setup.py bdist_wheel')
+
+
+def release():
+    pass
+
+
+def commit():
+    pass
 
 
 def main():
