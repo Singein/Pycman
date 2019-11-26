@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+* refactor(pycman.cli): 新增了几个指令
+
 v0.1.2
 ------
 
