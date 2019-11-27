@@ -10,6 +10,7 @@ def get_version(self: bool = True) -> str:
     if self:
         return version
     context = os.path.abspath(os.getcwd())
+    sys.path.append(context)
     package = importlib.import_module('package')
     return package.package['version']
 
