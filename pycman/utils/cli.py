@@ -6,13 +6,13 @@ from pycman.utils import mark_version
 CONTEXT = os.path.abspath(os.getcwd())
 
 
-def create(project_type: str = 'GeneralBuilder'):
-    """按照流程模板，创建项目
+# def create(project_type: str = 'GeneralBuilder'):
+#     """按照流程模板，创建项目
 
-    Keyword Arguments:
-        project_type {str} -- 项目模板名称 (default: {'GeneralBuilder'})
-    """
-    BuildProject(project_type)
+#     Keyword Arguments:
+#         project_type {str} -- 项目模板名称 (default: {'GeneralBuilder'})
+#     """
+#     BuildProject(project_type)
 
 
 def init():

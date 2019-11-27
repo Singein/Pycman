@@ -16,10 +16,10 @@ class Builder(BaseBuilder):
             with open(os.path.join(CONTEXT, self.name, '__init__.py'), 'w', encoding="utf-8") as f:
                 f.write('__version__ = "0.0.1"')
 
-
     def building(self):
         utils.init_package_module(self)
         utils.init_pbr(self)
         utils.init_requirements(self)
         utils.init_readme(self)
         utils.init_git(self)
+        utils.init_venv(self)
