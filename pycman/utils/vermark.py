@@ -9,7 +9,7 @@ from pycman.utils import get_version, goto, import_module
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def mark_version(version: str = None):
+def mark_version(version: str = None) -> str:
     """标定版本号
 
     Keyword Arguments:
@@ -20,20 +20,15 @@ def mark_version(version: str = None):
         print('Current version: %s' % get_version())
         version = input('Please enter a new version number: v')
 
-    is_sync = input('Push to your remote? (press enter to skip) [y/n]')
-    sync_flag = False
-    if is_sync in ['y', 'n']:
-        if is_sync == 'y':
-            sync_flag = True
-    if not sync_flag:
-        print('About to skip the push step...')
 
     is_version_legal = re.match(r'[0-9]+\.[0-9]+\.[0-9]+$', version)
     if is_version_legal:
         write_version_into_files(version)
-        commit(version, sync_flag)
+        commit_and_tag(version)
+        return version
     else:
         print(r'Please enter a valid version number [0-9]+\.[0-9]+\.[0-9]+$')
+        return None
 
 
 def write_version_into_files(version: str, context: str = os.getcwd()):
@@ -60,12 +55,11 @@ def write_version_into_files(version: str, context: str = os.getcwd()):
         f.write(dicts)
 
 
-def commit(version: str, sync: str):
+def commit_and_tag(version: str):
     """
     提交代码
     """
     os.system("git add .")
     os.system('git commit -m "[release] %s"' % version)
     os.system('git tag v%s' % version)
-    if sync:
-        os.system('git push origin v%s' % version)
+

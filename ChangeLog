@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+v0.1.7
+------
+
+* [release] 0.1.7
+
+v0.1.6
+------
+
+* [release] 0.1.6
+
+v0.1.5
+------
+
+* [release] 0.1.5
 * refactor(pycman.cli): 新增了几个指令
 
 v0.1.2

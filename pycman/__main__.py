@@ -1,3 +1,3 @@
-from pycman.utils import mark_version
+from pycman.utils import entry_point
 
-mark_version()
+entry_point()

@@ -1,3 +1,4 @@
+from pycman.builder.BaseBuilder import Director
 import importlib
 import sys
 import os
@@ -12,13 +13,13 @@ class BuilderNotFound(BaseException):
 def get_builder(name: str) -> object:
     """返回指定名称的的Builder, 当前Builder类型
     可以在builder模块下按照Builder模板扩充
-    
+
     Arguments:
         name {str} -- builder模块所在的文件名
-    
+
     Raises:
         BuilderNotFound: builder模块找不到时触发
-    
+
     Returns:
         object -- 返回一个动态加载的builder类
     """
@@ -27,3 +28,14 @@ def get_builder(name: str) -> object:
         return builder.Builder
     except ImportError:
         raise BuilderNotFound('Builder [%s] not found!' % name)
+
+
+def build(name='GeneralBuilder'):
+    builder = get_builder(name)
+    director = Director(builder())
+    director.build()
+
+
+__all__ = [
+    'build'
+]

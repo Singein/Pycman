@@ -1,6 +1,7 @@
-from pycman.build import build
+from pycman.builder import build
 import os
 import fire
+from pycman.utils import mark_version
 
 CONTEXT = os.path.abspath(os.getcwd())
 
@@ -42,14 +43,16 @@ def build():
     os.system('python setup.py bdist_wheel')
 
 
-def release(sync: bool = False):
-    """实现版本号标定，并提交代码
-
-    Keyword Arguments:
-        sync {bool} -- 如果sync为True, 则同步代码到远程仓库 (default: {False})
+def release():
     """
-    pass
-    # 第一步实现版本标定
+    实现版本号标定，并提交代码
+    """
+    version = mark_version()
+    # 如果版本号标记成功， 执行构建
+    if version:
+        os.system('python setup.py bdist_wheel')
+        os.system('git add .')
+        os.system('git commit -m "docs(ChangeLog): update [%s]' % version)
 
 
 def commit():
@@ -59,12 +62,18 @@ def commit():
     os.system('git add . && cz commit')
 
 
-def main():
+def version():
+    from pycman.utils import show_version
+    show_version()
+
+
+def entry_point():
     fire.Fire({
         'create': create,
-        'run': run
+        'init': init,
+        'build': build,
+        'run': run,
+        'release': release,
+        'commit': commit,
+        'version': version
     })
-
-
-if __name__ == "__main__":
-    main()
