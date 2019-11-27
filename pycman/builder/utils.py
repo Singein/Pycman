@@ -38,11 +38,10 @@ def init_package_module(builder):
             'author': '%s',
             'email': '%s',
             'scripts': {
-                'dev': 'python %s',
                 'default': 'echo 请输入明确的命令名称'
             }
         }
-            """) % (builder.name, builder.author, builder.email, builder.entry))
+            """) % (builder.name, builder.author, builder.email))
 
 
 def init_venv(builder):

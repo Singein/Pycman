@@ -20,7 +20,6 @@ def mark_version(version: str = None) -> str:
         print('Current version: %s' % get_version())
         version = input('Please enter a new version number: v')
 
-
     is_version_legal = re.match(r'[0-9]+\.[0-9]+\.[0-9]+$', version)
     if is_version_legal:
         write_version_into_files(version)
@@ -33,6 +32,7 @@ def mark_version(version: str = None) -> str:
 
 def write_version_into_files(version: str, context: str = os.getcwd()):
     # 先找到 __init__.py 中的 __version__ 描述
+    print(context)
     package = import_module(module='package', cwd=context)
     package_name = package.package['name']
 
@@ -62,4 +62,3 @@ def commit_and_tag(version: str):
     os.system("git add .")
     os.system('git commit -m "[release] %s"' % version)
     os.system('git tag v%s' % version)
-
