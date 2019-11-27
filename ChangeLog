@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v0.1.13
+-------
+
+* [release] 0.1.13
+* fix(builder): 修复构建时的参数错误
+* docs(ChangeLog): update changes about [0.1.12]
+
 v0.1.12
 -------
 
