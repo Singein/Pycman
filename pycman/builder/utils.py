@@ -5,23 +5,32 @@ import textwrap
 CONTEXT = os.path.abspath(os.getcwd())
 
 
+def judge_path(context, builder, filename=''):
+    """如果context最后一项和builder.name相同，
+    忽略大小写, 便不指定新目录
+    """
+    if builder.name.lower() == os.path.split(context)[-1].lower():
+        return os.path.join(context,  filename)
+    return os.path.join(context, builder.name, filename)
+
+
 def init_meta_data(builder):
     builder.entry = input('Entry ( main.py ): ')
     if not builder.entry:
         builder.entry = 'main.py'
-        open(os.path.join(CONTEXT, builder.name, 'main.py'), 'w').close()
+        open(judge_path(CONTEXT, builder, 'main.py'), 'w').close()
 
 
 def init_requirements(builder):
     print(' -> create requirements.txt...')
     default_requirements = ['fire']
-    with open(os.path.join(CONTEXT, builder.name, 'requirements.txt'), 'w', encoding='utf-8') as f:
+    with open(judge_path(CONTEXT, builder, 'requirements.txt'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(default_requirements))
 
 
 def init_package_module(builder):
     print(' -> create package.py...')
-    with open(os.path.join(CONTEXT, builder.name, 'package.py'), 'w', encoding='utf-8') as f:
+    with open(judge_path(CONTEXT, builder, 'package.py'), 'w', encoding='utf-8') as f:
         f.write(textwrap.dedent("""
         package = {
             'name': '%s',
@@ -38,17 +47,16 @@ def init_package_module(builder):
 
 def init_venv(builder):
     print(' -> create venv...')
-    os.system('python -m venv %s' %
-              os.path.join(CONTEXT, builder.name, 'venv'))
+    os.system('python -m venv %s' % judge_path(CONTEXT, builder, 'venv'))
 
 
 def init_git(builder):
     print(' -> create git repository...')
-    os.chdir(os.path.join(CONTEXT, builder.name))
+    os.chdir(judge_path(CONTEXT, builder))
     os.system('git init')
     print(' -> create .gitignore...')
     default_ignores = ['venv/', '__pycache__/']
-    with open(os.path.join(CONTEXT, builder.name, '.gitignore'), 'w', encoding='utf-8') as f:
+    with open(judge_path(CONTEXT, builder, '.gitignore'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(default_ignores))
 
 
@@ -79,10 +87,10 @@ def init_pbr(builder):
     import setuptools
     setuptools.setup(setup_requires=['pbr'], pbr=True)
     """)
-    with open(os.path.join(CONTEXT, builder.name, 'setup.cfg'), 'w', encoding="utf-8") as cfg:
+    with open(judge_path(CONTEXT, builder, 'setup.cfg'), 'w', encoding="utf-8") as cfg:
         cfg.write(pbr_cfg)
 
-    with open(os.path.join(CONTEXT, builder.name, 'setup.py'), 'w', encoding="utf-8") as cfg:
+    with open(judge_path(CONTEXT, builder, 'setup.py'), 'w', encoding="utf-8") as cfg:
         cfg.write(setup_script)
 
 
