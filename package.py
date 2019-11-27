@@ -1,6 +1,6 @@
 package = {
     'name': 'Pycman',
-    'version': '0.1.9',
+    'version': '0.1.10',
     'author': 'singein',
     'email': 'singein@outlook.com',
     "scripts": {
