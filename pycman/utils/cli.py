@@ -17,13 +17,14 @@ def create(project_type: str = 'GeneralBuilder'):
 
 def init():
     """
-    生成基本的pbr相关配置文件
+    在当前文件夹下直接初始化脚手架， 包括:
+    创建模块, package.py , git初始化, requirements.txt, pbr配置
     """
     BuildProject('SimpleBuilder')
 
 
 def run(script: str = None):
-    """执行自定义脚本
+    """执行自定义脚本 pyc run <script>
 
     Keyword Arguments:
         script {[str]} -- 执行指定名称为 script 的指令 (default: {None})
@@ -38,7 +39,7 @@ def run(script: str = None):
 
 def build():
     """
-    执行PBR构建
+    执行PBR构建, 打包为wheel格式
     """
     os.system('python setup.py bdist_wheel')
 
