@@ -9,11 +9,11 @@ def judge_path(context, builder, filename=''):
     """如果context最后一项和builder.name相同，
     忽略大小写, 便不指定新目录
     """
-    
+
     # if builder.name.lower() == os.path.split(context)[-1].lower():
     if builder.in_place:
         return os.path.join(context,  filename)
-    
+
     return os.path.join(context, builder.name, filename)
 
 
@@ -74,22 +74,22 @@ def init_pbr(builder):
     name = %s
     author = %s
     author-email = %s
-    summary = ...
+    summary = awsome project created by pycman.
     license = MIT
     description-file = 
         README.rst
     home-page = http://example.com
-    requires-python = >= 3.4
+    requires-python = >= 3.6
 
     [files]
     packages = 
-        package
+        %s
 
 
     [entry_points]
     console_scripts =
         cmd=package.module:function
-    """ % (builder.name, builder.author, builder.email))
+    """ % (builder.name, builder.author, builder.email, builder.name))
 
     setup_script = textwrap.dedent("""
     import setuptools
