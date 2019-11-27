@@ -37,6 +37,7 @@ def write_version_into_files(version: str, context: str = os.getcwd()):
     package_name = package.package['name']
 
     # 找到 package 下的 __init__.py
+
     code = ''
     with open(os.path.join(context, package_name, '__init__.py'), encoding="utf-8") as f:
         code = f.read()

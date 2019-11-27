@@ -42,6 +42,7 @@ def import_module(module: str = 'package', cwd: str = None) -> object:
     Returns:
         object -- 返回该模块
     """
+    os.sys.path.append(cwd)
     with goto(cwd):
         module = importlib.import_module(module)
 
