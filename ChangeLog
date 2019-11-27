@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v0.1.15
+-------
+
+* [release] 0.1.15
+* fix(utils.version): 修复循环应用问题
+* docs(ChangeLog): update changes about [0.1.14]
+
 v0.1.14
 -------
 
