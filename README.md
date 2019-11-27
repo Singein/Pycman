@@ -46,33 +46,201 @@
 
 ## Qucik Start
 
+### 安装
+
+```
+pip install pycman
+```
+
+
+
 ### 创建项目
 
-创建一个基本的项目
+请先新建一个空白文件夹，在该文件夹所在目录下，运行如下指令
 
 
 ```shell
-pyc create 
-Project name: myAwsomeProject
-...
-...
+pyc init
 ```
+
+按照提示，补全基本的项目信息
+
+![1574846946404](assets/1574846946404.png)
+
+此时，等待创建完毕后，项目目录结构将会如下所示:
+
+![1574847250019](assets/1574847250019.png)
+
+其中，MyAwsomeProject 为我们创建的项目，是一个Python包， pycman 已经为你写好了 `__init__.py`,  并在其中标记好了版本号 ， （请不要擅自移除版本号， 否则会影响pycman进行版本号的标注）。
+
+项目目录下同时会自动定义一个package.py 这是一个python模块， 其中定义了一些基本的项目数据， 在scripts下， 我们可以以python字典的数据格式，自己自定义指令。
+
+
 
 ### 自定义指令配置
 
-```python
-package_info = {
-    'name': 'Pycman',
-    'author': 'singein',
-    'email': 'singein@outlook.com'
-}
+在上图中，我们可以看到项目根目录下的package.py模块， 其中存在一条默认指定，别名为 `default`
 
-scripts = {
-    # 借鉴 npm 可以自定义指令
-    # 在package.py根目录下使用 pyc run <command> 即可执行
-    'commit': 'git add . && cz commit',
-    'build': 'python setup.py bdist_wheel',
-    'default': 'echo 请输入明确的命令名称'
+```python
+package = {
+    'name': 'MyAwsomeProject',
+    'version': '0.0.1',
+    'author': 'singein',
+    'email': 'singein@xxx.com',
+    'scripts': {
+        'default': 'echo 请输入明确的命令名称'
+    }
 }
 
 ```
+
+
+
+### 执行默认指令
+
+在整个项目的根目录下， 即 `package.py`所在得目录下尝试执行 `pyc run default`：
+
+![1574847760493](assets/1574847760493.png)
+
+可以看到，pyc run 后不跟具体的指令名称，将默认执行值为 `default`的指令别名。
+
+> ps: 
+>
+> 以上脚本为笔者在vscode的terminal中执行的截图
+>
+> 笔者使用vscode进行日常开发，新建的项目中带有pycman创建的虚拟环境， vscode的终端将能够自动识别
+>
+> 所以非常的方便
+
+
+
+### 添加一条自定义指令
+
+我们可以在MyAwsomeProject中添加 `__main__.py`, 以允许我们的python包可以独立运行
+
+![1574848130307](assets/1574848130307.png)
+
+接下来我们可以在package.py中定义`dev`指令：
+
+```python
+package = {
+    'name': 'MyAwsomeProject',
+    'version': '0.0.1',
+    'author': 'singein',
+    'email': 'singein@xxx.com',
+    'scripts': {
+        'default': 'echo 请输入明确的命令名称',
+        'dev': 'python -m MyAwsomeProject'
+    }
+}
+```
+
+
+
+接下来我们能便可以在整个项目的根目录下， 即 `package.py`所在得目录下， 执行如下指令：
+
+```shell
+pyc run dev
+```
+
+![1574848291825](assets/1574848291825.png)
+
+
+
+### 使用commitizen规范化提交
+
+`commitizen`是一个由python开发得git 提交日志规范化管理工具：
+
+<https://github.com/Woile/commitizen>
+
+Pycman 已将其作为依赖集成到了工具中， 你只需在当前项目目录下执行：
+
+```shell
+pyc commit
+```
+
+![1574848546278](assets/1574848546278.png)
+
+即可按照提示进行规范化的日志提交。
+
+
+
+### 打包项目
+
+打包项目之前，请将 setup.cfg中的内容补充完善：
+
+```ini
+[metadata]
+name = MyAwsomeProject
+author = singein
+author-email = singein@xxx.com
+summary = awsome project created by pycman.
+license = MIT
+description-file = 
+    README.rst
+home-page = http://example.com
+requires-python = >= 3.6
+
+[files]
+packages = 
+    MyAwsomeProject
+
+
+[entry_points]
+console_scripts =
+    cmd=package.module:function # 这里的内容为命令行工具入口，请按照实际情况自己定义
+```
+
+然后只需简单的使用build指令：
+
+```shell
+pyc build
+```
+
+即可进行pbr打包， 打包完成的wheel包将被存放在 dist文件夹中，改动日志也将自动生成。
+
+
+
+### release版本号标记
+
+执行： 
+
+```shell
+pyc release
+```
+
+![1574849137852](assets/1574849137852.png)
+
+输入版本号后回车，如果版本号符合正则表达式  `[0-9]+\.[0-9]+\.[0-9]+$`
+
+则 该版本号将自动写入以下两个地方：
+
+- `MyAwsomeProject` 的 `__init__.py`中的 `__version__`变量下
+- `package`下的 `version`属性中
+
+同时，pycman会自动将版本号标记到 git tags 中。
+
+同时，pycman将会自动进行一次 pbr 构建.
+
+![1574849714831](assets/1574849714831.png)
+
+如图，整个版本号全部统一规整， 并且git被提交的很干净。
+
+同时自动生成了如下的改动日志:
+
+```shell
+CHANGES
+=======
+
+v0.0.2
+------
+
+* [release] 0.0.2
+
+```
+
+
+
+### 使用帮助
+
+![1574849865637](assets/1574849865637.png)
