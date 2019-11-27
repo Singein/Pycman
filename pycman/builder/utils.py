@@ -6,11 +6,8 @@ CONTEXT = os.path.abspath(os.getcwd())
 
 
 def judge_path(context, builder, filename=''):
-    """如果context最后一项和builder.name相同，
-    忽略大小写, 便不指定新目录
+    """如果in_place 为True 就地创建，否则新建目录进行项目构建
     """
-
-    # if builder.name.lower() == os.path.split(context)[-1].lower():
     if builder.in_place:
         return os.path.join(context,  filename)
 

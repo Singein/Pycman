@@ -17,7 +17,7 @@ class Builder(BaseBuilder):
     def building(self):
         utils.init_meta_data(self)
         utils.init_requirements(self)
-        utils.init_project_manager(self)
+        utils.init_package_module(self)
         utils.init_venv(self)
         utils.init_git(self)
         utils.init_pbr(self)
