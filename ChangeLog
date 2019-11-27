@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+v0.2.2
+------
+
+* [release] 0.2.2
+* fix(GeneralBuilder): 修复函数名改动导致的错误
+* refactor(logo): 增加了github地址
+* docs(ChangeLog): update changes about [0.2.1]
+
 v0.2.1
 ------
 
