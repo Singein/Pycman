@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v0.1.10
+-------
+
+* [release] 0.1.10
+* fix(builder.utils): 增加了jude\_path 方法，修复了init下的路径问题
+* docs(ChangeLog): update changes about [0.1.9]
+
 v0.1.9
 ------
 
