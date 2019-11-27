@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v0.3.2
+------
+
+* [release] 0.3.2
+* fix(cli): 修复了entry\_point中未注释create导致的错误
+* docs(ChangeLog): update changes about [0.3.1]
+
 v0.3.1
 ------
 
