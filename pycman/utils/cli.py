@@ -1,4 +1,4 @@
-from pycman.builder import build
+from pycman.builder import build as BuildProject
 import os
 import fire
 from pycman.utils import mark_version
@@ -12,14 +12,14 @@ def create(project_type: str = 'GeneralBuilder'):
     Keyword Arguments:
         project_type {str} -- 项目模板名称 (default: {'GeneralBuilder'})
     """
-    build(project_type)
+    BuildProject(project_type)
 
 
 def init():
     """
     生成基本的pbr相关配置文件
     """
-    pass
+    BuildProject('SimpleBuilder')
 
 
 def run(script: str = None):
@@ -52,7 +52,8 @@ def release():
     if version:
         os.system('python setup.py bdist_wheel')
         os.system('git add .')
-        os.system('git commit -m "docs(ChangeLog): update [%s]' % version)
+        os.system(
+            'git commit -m "docs(ChangeLog): update changes about [%s]' % version)
 
 
 def commit():
@@ -63,6 +64,9 @@ def commit():
 
 
 def version():
+    """
+    查看版本号
+    """
     from pycman.utils import show_version
     show_version()
 

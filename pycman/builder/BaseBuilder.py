@@ -1,4 +1,5 @@
 import abc
+import os
 
 
 class InitError(BaseException):
@@ -7,33 +8,33 @@ class InitError(BaseException):
 
 class BaseBuilder(metaclass=abc.ABCMeta):
 
-    @abc.abstractmethod
-    def init_meta_data(self):
-        """init project metadata"""
+    # @abc.abstractmethod
+    def init(self):
+        """
+        初始化设置，这里用来初始化项目信息，
+        最基本要素：项目名，作者，邮箱
+        """
+        # TODO 加入校验
+        self.name = input('Project name: ')
+        if not len(self.name):
+            raise InitError("project name can't be empty.")
+        # os.mkdir(self.name)
+        self.author = input('Author: ')
+        if not len(self.author):
+            raise InitError("author can't be empty.")
+        self.email = input('Email: ')
+
+
+    def before_build(self):
+        pass
 
     @abc.abstractmethod
-    def init_requirements(self):
-        """init project requirements.txt"""
+    def building(self):
+        pass
 
-    @abc.abstractmethod
-    def init_project_manager(self):
-        """create a templated package.py"""
 
-    @abc.abstractmethod
-    def init_venv(self):
-        """create venv"""
-
-    @abc.abstractmethod
-    def init_git(self):
-        """init git repository"""
-
-    @abc.abstractmethod
-    def init_pbr(self):
-        """init setup.py and setup.cfg"""
-
-    @abc.abstractmethod
-    def init_readme(self):
-        """init readme"""
+    def finish(self):
+        pass
 
 
 class Director:
@@ -41,10 +42,7 @@ class Director:
         self.builder = builder
 
     def build(self):
-        self.builder.init_meta_data()
-        self.builder.init_requirements()
-        self.builder.init_project_manager()
-        self.builder.init_venv()
-        self.builder.init_git()
-        self.builder.init_pbr()
-        self.builder.init_readme()
+        self.builder.init()
+        self.builder.before_build()
+        self.builder.building()
+        self.builder.finish()
