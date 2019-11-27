@@ -23,7 +23,7 @@ def init_meta_data(builder):
 
 def init_requirements(builder):
     print(' -> create requirements.txt...')
-    default_requirements = ['fire']
+    default_requirements = ['pycman']
     with open(judge_path(CONTEXT, builder, 'requirements.txt'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(default_requirements))
 
@@ -34,7 +34,7 @@ def init_package_module(builder):
         f.write(textwrap.dedent("""
         package = {
             'name': '%s',
-            'version': '0.0.0',
+            'version': '0.0.1',
             'author': '%s',
             'email': '%s',
             'scripts': {
@@ -94,4 +94,8 @@ def init_pbr(builder):
 
 
 def init_readme(builder):
-    pass
+    with open(judge_path(CONTEXT, builder, 'README.rst'), 'w', encoding="utf-8") as rst:
+        rst.write(builder.name)
+
+    with open(judge_path(CONTEXT, builder, 'README.md'), 'w', encoding="utf-8") as md:
+        md.write("# %s" % builder.name)
