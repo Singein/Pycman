@@ -21,6 +21,7 @@ def init():
     创建模块, package.py , git初始化, requirements.txt, pbr配置
     """
     BuildProject('SimpleBuilder')
+    
 
 
 def run(script: str = None):

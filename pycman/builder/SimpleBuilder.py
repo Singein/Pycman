@@ -23,3 +23,8 @@ class Builder(BaseBuilder):
         utils.init_readme(self)
         utils.init_git(self)
         utils.init_venv(self)
+
+    def finish(self):
+        # print("=> opening in vscode...")
+        # os.system("code %s" % self.name)
+        pass
