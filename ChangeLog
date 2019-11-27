@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v0.2.1
+------
+
+* [release] 0.2.1
+* feat(utils.init\_pbr): 修改了pbr模板
+* docs(ChangeLog): update changes about [0.1.16]
+
 v0.1.16
 -------
 
