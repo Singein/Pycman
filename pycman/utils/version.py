@@ -1,5 +1,4 @@
 from pycman.utils import print_logo
-from pycman.utils import import_module
 import importlib
 import os
 import sys
@@ -11,7 +10,7 @@ def get_version(self: bool = True) -> str:
     if self:
         return version
     context = os.path.abspath(os.getcwd())
-    package = import_module('package', context)
+    package = importlib.import_module('package')
     return package.package['version']
 
 
