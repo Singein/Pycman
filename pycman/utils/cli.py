@@ -74,7 +74,7 @@ def version():
 
 def entry_point():
     fire.Fire({
-        'create': create,
+        # 'create': create,
         'init': init,
         'build': build,
         'run': run,
