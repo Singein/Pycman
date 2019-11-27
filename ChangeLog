@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v0.1.16
+-------
+
+* [release] 0.1.16
+* fix(utils.version): 修复import error
+* docs(ChangeLog): update changes about [0.1.15]
+
 v0.1.15
 -------
 
