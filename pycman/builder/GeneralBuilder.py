@@ -10,6 +10,7 @@ class Builder(BaseBuilder):
 
     def init(self):
         super().init()
+        self.in_place = False
         os.mkdir(self.name)
         utils.init_meta_data(self)
 

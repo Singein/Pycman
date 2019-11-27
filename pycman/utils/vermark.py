@@ -17,7 +17,7 @@ def mark_version(version: str = None) -> str:
     """
 
     if not version:
-        print('Current version: %s' % get_version())
+        print('Current version: %s' % get_version(self=False))
         version = input('Please enter a new version number: v')
 
     is_version_legal = re.match(r'[0-9]+\.[0-9]+\.[0-9]+$', version)
@@ -32,12 +32,10 @@ def mark_version(version: str = None) -> str:
 
 def write_version_into_files(version: str, context: str = os.getcwd()):
     # 先找到 __init__.py 中的 __version__ 描述
-    print(context)
     package = import_module(module='package', cwd=context)
     package_name = package.package['name']
 
     # 找到 package 下的 __init__.py
-
     code = ''
     with open(os.path.join(context, package_name, '__init__.py'), encoding="utf-8") as f:
         code = f.read()

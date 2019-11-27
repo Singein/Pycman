@@ -1,12 +1,18 @@
 from pycman.utils import print_logo
+from pycman.utils import import_module
 import importlib
-
+import os
+import sys
 # 动态导入，避免重复冲突
 version = importlib.import_module('pycman').__version__
 
 
-def get_version():
-    return version
+def get_version(self: bool = True) -> str:
+    if self:
+        return version
+    context = os.path.abspath(os.getcwd())
+    package = import_module('package', context)
+    return package.package['version']
 
 
 def show_version():

@@ -9,8 +9,11 @@ def judge_path(context, builder, filename=''):
     """如果context最后一项和builder.name相同，
     忽略大小写, 便不指定新目录
     """
-    if builder.name.lower() == os.path.split(context)[-1].lower():
+    
+    # if builder.name.lower() == os.path.split(context)[-1].lower():
+    if builder.in_place:
         return os.path.join(context,  filename)
+    
     return os.path.join(context, builder.name, filename)
 
 
@@ -50,11 +53,17 @@ def init_venv(builder):
 
 
 def init_git(builder):
+    """
+    请在 package_module 初始化完成后调用
+    """
     print(' -> create git repository...')
-    os.chdir(judge_path(CONTEXT, builder))
-    os.system('git init')
+    if 'package.py' not in os.listdir():
+        os.chdir(judge_path(CONTEXT, builder))
+    if not '.git' in os.listdir():
+        os.system('git init')
     print(' -> create .gitignore...')
-    default_ignores = ['venv/', '__pycache__/']
+    default_ignores = ['venv/', '__pycache__/',
+                       '*.ini', '.eggs/', '*.egg-info', 'dist/', 'build/']
     with open(judge_path(CONTEXT, builder, '.gitignore'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(default_ignores))
 
