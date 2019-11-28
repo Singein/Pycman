@@ -52,7 +52,6 @@ def import_module(module: str = 'package', cwd: str = None) -> object:
 
 def get_python_version():
     import subprocess
-    out = os.popen('python --version',).read()
     p = subprocess.Popen(['python', '--version'],
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 

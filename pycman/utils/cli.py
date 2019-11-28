@@ -54,14 +54,14 @@ def release():
         os.system('%s setup.py bdist_wheel' % PYTHON)
         os.system('git add .')
         os.system(
-            'git commit -m "docs(ChangeLog): update changes about [%s]' % version)
+            'git commit -m "docs(ChangeLog): update changes about [%s]"' % version)
 
 
 def commit():
     """
     使用commitizen进行代码提交
     """
-    os.system('git add . && cz commit')
+    os.system('git add . && %s -m commitizen commit' % PYTHON)
 
 
 def version():
