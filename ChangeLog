@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v0.4.3
+------
+
+* [release] 0.4.3
+* fix(utils.common): 修复PYTHON import error
+* docs(ChangeLog): update changes about [0.4.2]
+
 v0.4.2
 ------
 
