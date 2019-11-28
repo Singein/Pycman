@@ -69,3 +69,6 @@ def get_python_version():
         return 'python3'
 
     return 'python'
+
+
+PYTHON = get_python_version()

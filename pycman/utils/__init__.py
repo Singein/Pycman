@@ -1,10 +1,9 @@
 from pycman.utils.logo import print_logo
 from pycman.utils.version import get_version, show_version
-from pycman.utils.common import goto, import_module, get_python_version
+from pycman.utils.common import goto, import_module, PYTHON
 from pycman.utils.vermark import mark_version
 from pycman.utils.cli import entry_point
 
-PYTHON = get_python_version()
 
 __all__ = [
     'print_logo',
