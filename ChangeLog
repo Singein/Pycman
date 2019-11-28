@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+v0.4.2
+------
+
+* [release] 0.4.2
+* feat(utils.cli-builder.utils): 添加了对python版本的判断
+* docs(readme): 更新logo
+* docs(ChangeLog): update changes about [0.4.1]
+
 v0.4.1
 ------
 
