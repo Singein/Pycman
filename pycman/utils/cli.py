@@ -1,7 +1,7 @@
 from pycman.builder import build as BuildProject
 import os
 import fire
-from pycman.utils import mark_version
+from pycman.utils import mark_version, PYTHON
 
 CONTEXT = os.path.abspath(os.getcwd())
 
@@ -21,7 +21,6 @@ def init():
     创建模块, package.py , git初始化, requirements.txt, pbr配置
     """
     BuildProject('SimpleBuilder')
-    
 
 
 def run(script: str = None):
@@ -42,7 +41,7 @@ def build():
     """
     执行PBR构建, 打包为wheel格式
     """
-    os.system('python setup.py bdist_wheel')
+    os.system('%s setup.py bdist_wheel' % PYTHON)
 
 
 def release():
@@ -52,7 +51,7 @@ def release():
     version = mark_version()
     # 如果版本号标记成功， 执行构建
     if version:
-        os.system('python setup.py bdist_wheel')
+        os.system('%s setup.py bdist_wheel' % PYTHON)
         os.system('git add .')
         os.system(
             'git commit -m "docs(ChangeLog): update changes about [%s]' % version)

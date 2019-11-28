@@ -1,6 +1,7 @@
 import os
 import sys
 import textwrap
+from pycman.utils import PYTHON
 
 CONTEXT = os.path.abspath(os.getcwd())
 
@@ -46,7 +47,7 @@ def init_package_module(builder):
 
 def init_venv(builder):
     print(' -> create venv...')
-    os.system('python -m venv %s' % judge_path(CONTEXT, builder, 'venv'))
+    os.system('%s -m venv %s' % (PYTHON, judge_path(CONTEXT, builder, 'venv')))
 
 
 def init_git(builder):
