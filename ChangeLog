@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v0.4.5
+------
+
+* [release] 0.4.5
+* refactor(cli): use 'python -m commitizen commit' instead of 'cz commit'
+* docs(ChangeLog): update changes about [0.4.3]
+
 v0.4.3
 ------
 
