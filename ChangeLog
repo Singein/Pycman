@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+v0.4.6
+------
+
+* [release] 0.4.6
+* refactor(pycman): 移除无关文件/文件夹
+* build(requirements.txt): 更新fire依赖
+* docs(ChangeLog): update changes about [0.4.5]
+
 v0.4.5
 ------
 
