@@ -7,30 +7,40 @@ CONTEXT = os.path.abspath(os.getcwd())
 
 def init(context: str = '.'):
     """
+    Initialize the scaffolding directly under the current folder, including:
+     Create module, package.py, .gitignore, requirements.txt, pbr configuration.
     在当前文件夹下直接初始化脚手架， 包括:
-    创建模块, package.py , git初始化, requirements.txt, pbr配置
+    创建模块, package.py , .gitignore, requirements.txt, pbr配置。
     """
     from pycman.initializer import PycmanInitializer
     PycmanInitializer(context)
 
 
 def run(script: str = None):
-    """执行自定义脚本 pyc run <script>
+    """
+    Execute custom script: pyc run <script>
+    执行自定义脚本:  pyc run <script>
 
     Keyword Arguments:
         script {[str]} -- 执行指定名称为 script 的指令 (default: {None})
     """
     import importlib
     import sys
-    script = script or 'default'
+
     sys.path.append(CONTEXT)
     pro = importlib.__import__('package')
+    if not script:
+        warning = "Please specify a command alias. 请指定一条指令别名。"
+        print(warning)
+        return warning
+
     return os.popen(pro.package["scripts"].get(script, 'default')).read()
 
 
 def build():
     """
-    执行PBR构建, 打包为wheel格式
+    Perform PBR construction, packaged as wheel format.
+    执行PBR构建, 打包为wheel格式。
     """
     from pycman.utils import PYTHON
     os.system('%s setup.py bdist_wheel' % PYTHON)
@@ -38,7 +48,8 @@ def build():
 
 def release():
     """
-    实现版本号标定，并提交代码
+    Realize the version number calibration and submit the code.
+    实现版本号标定，并提交代码。
     """
     from pycman.utils import mark_version
     from pycman.utils import PYTHON
@@ -53,7 +64,8 @@ def release():
 
 def commit():
     """
-    使用commitizen进行代码提交
+    Use commitizen for code submission.
+    使用commitizen进行代码提交。
     """
     from pycman.utils import PYTHON
     os.system('git add . && %s -m commitizen commit' % PYTHON)
@@ -61,7 +73,8 @@ def commit():
 
 def version():
     """
-    查看版本号
+    View version number.
+    查看版本号。
     """
     from pycman.utils import show_version
     show_version()

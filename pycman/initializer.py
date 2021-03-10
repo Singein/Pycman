@@ -13,7 +13,7 @@ package = {
     'author': '%s',
     'email': '%s',
     'scripts': {
-        'default': 'echo 请输入明确的命令名称'
+        'default': 'echo hello!'
     }
 }
 """.strip()

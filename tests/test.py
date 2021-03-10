@@ -39,7 +39,7 @@ class TestPycmanInitializer(unittest.TestCase):
 
     def test_run_scripts(self):
         data = run()
-        self.assertEqual(data, "请输入明确的命令名称\n")
+        self.assertEqual(data, "Please specify a command alias. 请指定一条指令别名。")
 
     def tearDown(self) -> None:
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
