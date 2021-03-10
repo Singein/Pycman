@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+* refactor(All): 精简代码
+* docs(ChangeLog): update changes about [0.4.6]
+
 v0.4.6
 ------
 
@@ -8,179 +11,79 @@ v0.4.6
 * refactor(pycman): 移除无关文件/文件夹
 * build(requirements.txt): 更新fire依赖
 * docs(ChangeLog): update changes about [0.4.5]
-
-v0.4.5
-------
-
 * [release] 0.4.5
 * refactor(cli): use 'python -m commitizen commit' instead of 'cz commit'
 * docs(ChangeLog): update changes about [0.4.3]
-
-v0.4.3
-------
-
 * [release] 0.4.3
 * fix(utils.common): 修复PYTHON import error
 * docs(ChangeLog): update changes about [0.4.2]
-
-v0.4.2
-------
-
 * [release] 0.4.2
 * feat(utils.cli-builder.utils): 添加了对python版本的判断
 * docs(readme): 更新logo
 * docs(ChangeLog): update changes about [0.4.1]
-
-v0.4.1
-------
-
 * [release] 0.4.1
 * docs(update-readme): 更新readme
 * docs(ChangeLog): update changes about [0.3.3]
-
-v0.3.3
-------
-
 * [release] 0.3.3
 * docs(ChangeLog): update changes about [0.3.2]
-
-v0.3.2
-------
-
 * [release] 0.3.2
 * fix(cli): 修复了entry\_point中未注释create导致的错误
 * docs(ChangeLog): update changes about [0.3.1]
-
-v0.3.1
-------
-
 * [release] 0.3.1
 * refactor(cli): 暂时移除create指令
 * docs(ChangeLog): update changes about [0.2.2]
-
-v0.2.2
-------
-
 * [release] 0.2.2
 * fix(GeneralBuilder): 修复函数名改动导致的错误
 * refactor(logo): 增加了github地址
 * docs(ChangeLog): update changes about [0.2.1]
-
-v0.2.1
-------
-
 * [release] 0.2.1
 * feat(utils.init\_pbr): 修改了pbr模板
 * docs(ChangeLog): update changes about [0.1.16]
-
-v0.1.16
--------
-
 * [release] 0.1.16
 * fix(utils.version): 修复import error
 * docs(ChangeLog): update changes about [0.1.15]
-
-v0.1.15
--------
-
 * [release] 0.1.15
 * fix(utils.version): 修复循环应用问题
 * docs(ChangeLog): update changes about [0.1.14]
-
-v0.1.14
--------
-
 * [release] 0.1.14
 * docs(utils.cli): 详细描述了了指令的作用
 * feat(builder): 修改了创建项目时的行为行为逻辑，现在依靠 in\_place字段来判断
 * docs(ChangeLog): update changes about [0.1.13]
-
-v0.1.13
--------
-
 * [release] 0.1.13
 * fix(builder): 修复构建时的参数错误
 * docs(ChangeLog): update changes about [0.1.12]
-
-v0.1.12
--------
-
 * [release] 0.1.12
 * docs(ChangeLog): update changes about [0.1.11]
-
-v0.1.11
--------
-
 * [release] 0.1.11
 * docs(ChangeLog): update changes about [0.1.10]
-
-v0.1.10
--------
-
 * [release] 0.1.10
 * fix(builder.utils): 增加了jude\_path 方法，修复了init下的路径问题
 * docs(ChangeLog): update changes about [0.1.9]
-
-v0.1.9
-------
-
 * [release] 0.1.9
 * refactor(builder): 更改了建造流程
 * docs(ChangeLog): update [0.1.8]
-
-v0.1.8
-------
-
 * [release] 0.1.8
 
 v0.1.7
 ------
 
 * [release] 0.1.7
-
-v0.1.6
-------
-
 * [release] 0.1.6
-
-v0.1.5
-------
-
 * [release] 0.1.5
 * refactor(pycman.cli): 新增了几个指令
-
-v0.1.2
-------
-
 * docs(ChangeLog): update changelog
 * docs(README.rst): rewrite README.rst
 * docs(README.rst): fixed rst format error
 * docs(README): 补充了README文档
 * docs(changelog): release [v0.1.1]
-
-v0.1.1
-------
-
 * build(package.py): removed version, changed commit script
 * docs(ChangeLog): update changelog
 * refactor: 移除无关代码
 * refactor: 试试新的commitzen工具
-
-v0.1.0
-------
-
 * fixed: pbr cfg
 * feat: add build cmd
-
-v0.0.3
-------
-
 * fixed: textwrap
 * fixed: git dir error
-
-v0.0.2
-------
-
 * fixed: FileNotFound Error
 * Refactor(builder): added builder module
 * added initial.py
