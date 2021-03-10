@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+v1.0.0
+------
+
+* [release] 1.0.0
 * fix(cli): 修复init
 * fix(setup.cfg): 修复ent\_points
 * refactor(All): 精简代码
