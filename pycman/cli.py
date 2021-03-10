@@ -5,13 +5,13 @@ import fire
 CONTEXT = os.path.abspath(os.getcwd())
 
 
-def init():
+def init(context: str = '.'):
     """
     在当前文件夹下直接初始化脚手架， 包括:
     创建模块, package.py , git初始化, requirements.txt, pbr配置
     """
     from pycman.initializer import PycmanInitializer
-    PycmanInitializer()
+    PycmanInitializer(context)
 
 
 def run(script: str = None):
