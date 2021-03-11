@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+v1.0.1
+------
+
+* [release] 1.0.1
+* docs(ChangeLog): update ChangeLog about version[1.0.0]
 * 修改init文件中的版本号
 * docs(ChangeLog): update ChangeLog about version[1.0.0]
 
