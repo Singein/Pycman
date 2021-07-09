@@ -12,7 +12,7 @@ def init(context: str = '.'):
     在当前文件夹下直接初始化脚手架， 包括:
     创建模块, package.py , .gitignore, requirements.txt, pbr配置。
     """
-    from pycman.initializer import PycmanInitializer
+    from pycman.core import PycmanInitializer
     PycmanInitializer(context)
 
 
@@ -53,13 +53,13 @@ def release():
     """
     from pycman.utils import mark_version
     from pycman.utils import PYTHON
+
     version: str = mark_version()
     # 如果版本号标记成功， 执行构建
     if version:
         os.system('%s setup.py bdist_wheel' % PYTHON)
         os.system('git add .')
-        os.system(
-            'git commit -m "docs(ChangeLog): update ChangeLog about version[%s]"' % version)
+        os.system('git commit -m "docs(ChangeLog): update ChangeLog about version[%s]"' % version)
 
 
 def commit():

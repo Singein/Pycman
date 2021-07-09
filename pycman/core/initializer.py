@@ -1,5 +1,9 @@
+from __future__ import annotations
+
+import abc
 import os
 import re
+from typing import List
 
 
 class InitError(BaseException):
@@ -46,7 +50,27 @@ setuptools.setup(setup_requires=['pbr'], pbr=True)
 """.strip()
 
 
+class AbstractBuilder(metaclass=abc.ABCMeta):
+    # builders_path: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "builders")
+
+    @staticmethod
+    def get_builders() -> List[AbstractBuilder]:
+        import importlib
+        builders = importlib.import_module("pycman.core.builders")
+        
+        pass
+
+    @abc.abstractmethod
+    def build(self, initializer: PycmanInitializer):
+        pass
+
+    @abc.abstractmethod
+    def order(self) -> int:
+        pass
+
+
 class PycmanInitializer:
+
     def __init__(self, context: str, name: str = None, author: str = None, email: str = None):
         """
         初始化设置，这里用来初始化项目信息，
@@ -84,6 +108,11 @@ class PycmanInitializer:
             raise InitError("Email Invalid.")
 
         self.init()
+
+    def __do_build(self):
+        builders = AbstractBuilder.get_builders()
+        for builder in builders:
+            builder.build(self)
 
     def init(self):
         from pycman.utils import print_logo
