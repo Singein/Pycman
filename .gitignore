@@ -4,3 +4,4 @@ build/
 .eggs/
 *.egg-info/
 .vscode/
+test_reports/
