@@ -1,3 +1,5 @@
+from pycman.utils.common import datetime_format
+
 package = {
     'name': 'Pycman',
     'version': '1.0.2',
@@ -6,6 +8,7 @@ package = {
     "scripts": {
         'commit': 'git add . && cz commit',
         'build': 'python setup.py bdist_wheel',
-        'default': 'echo 请输入明确的命令名称'
+        'default': 'echo 请输入明确的命令名称',
+        'tests': f'pytest tests -n=auto --html=test_reports/test-report-{datetime_format()}.html --self-contained-html'
     }
 }

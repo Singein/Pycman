@@ -1,6 +1,5 @@
-import os
-
 import fire
+import os
 
 CONTEXT = os.path.abspath(os.getcwd())
 
@@ -16,7 +15,7 @@ def init(context: str = '.'):
     PycmanInitializer(context)
 
 
-def run(script: str = None):
+def run(script: str = None) -> str:
     """
     Execute custom script: pyc run <script>
     执行自定义脚本:  pyc run <script>

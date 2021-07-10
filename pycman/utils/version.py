@@ -46,7 +46,6 @@ def mark_version(version: str = None) -> str:
 
 
 def write_version_into_files(version: str, context: str = os.getcwd()):
-    dicts = ''
     # 再找到 package.py 中的 version描述
     with open(os.path.join(context, 'package.py'), encoding="utf-8") as f:
         dicts = f.read()

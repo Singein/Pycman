@@ -3,3 +3,6 @@ wheel
 commitizen
 pbr
 pytest
+pytest-xdist
+pytest-sugar
+pytest-html

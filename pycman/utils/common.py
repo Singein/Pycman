@@ -3,15 +3,20 @@
 author: singein
 e-mail: singein@outlook.com
 """
-
+import datetime
 import importlib
 import os
 import re
+import sys
 from contextlib import contextmanager
 
 
 class ContextError(BaseException):
     pass
+
+
+def datetime_format() -> str:
+    return datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 
 
 @contextmanager
@@ -33,7 +38,7 @@ def goto(path: str):
     os.chdir(cwd)
 
 
-def import_module(module: str = 'package', cwd: str = None) -> object:
+def import_module(module: str = 'package', cwd: str = '.') -> object:
     """动态导入指定工作目录 cwd 下的模块 
 
     Keyword Arguments:
@@ -43,7 +48,13 @@ def import_module(module: str = 'package', cwd: str = None) -> object:
     Returns:
         object -- 返回该模块
     """
-    os.sys.path.append(cwd)
+    if not module:
+        raise ImportError("Unknown module error")
+
+    if not cwd:
+        raise ImportError("Unknown cwd")
+
+    sys.path.append(cwd)
     with goto(cwd):
         module = importlib.import_module(module)
 

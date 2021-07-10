@@ -10,55 +10,26 @@ class InitError(BaseException):
     pass
 
 
-PACKAGE_CONTENTS = """
-package = {
-    'name': '%s',
-    'version': '0.0.1',
-    'author': '%s',
-    'email': '%s',
-    'scripts': {
-        'default': 'echo hello!'
-    }
-}
-""".strip()
-
-PBR_CONFIG = """
-[metadata]
-name = %s
-author = %s
-author-email = %s
-summary = awsome project created by pycman.
-license = MIT
-description-file = 
-    README.rst
-home-page = http://example.com
-requires-python = >= 3.6
-
-[files]
-packages = 
-    %s
-
-
-[entry_points]
-console_scripts =
-    cmd=package.module:function
-""".strip()
-
-SETUP_SCRIPT = """
-import setuptools
-setuptools.setup(setup_requires=['pbr'], pbr=True)
-""".strip()
-
-
 class AbstractBuilder(metaclass=abc.ABCMeta):
-    # builders_path: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "builders")
+    builders_path: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "builders")
+
+    def __init__(self):
+        pass
 
     @staticmethod
     def get_builders() -> List[AbstractBuilder]:
-        import importlib
-        builders = importlib.import_module("pycman.core.builders")
-        
-        pass
+        from pycman.utils.common import import_module
+
+        builders = []
+        for module in os.listdir(AbstractBuilder.builders_path):
+            if os.path.isdir(os.path.join(AbstractBuilder.builders_path, module)):
+                continue
+                
+            builder = import_module(os.path.splitext(module)[0], AbstractBuilder.builders_path)
+            builders.append(builder.Builder())
+
+        builders.sort(key=lambda x: x.order())
+        return builders
 
     @abc.abstractmethod
     def build(self, initializer: PycmanInitializer):
@@ -67,6 +38,15 @@ class AbstractBuilder(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def order(self) -> int:
         pass
+
+    def __eq__(self, other):
+        return self.order() == other.order()
+
+    def __lt__(self, other):
+        return self.order() < other.order()
+
+    def __gt__(self, other):
+        return self.order() > other.order()
 
 
 class PycmanInitializer:
@@ -118,57 +98,5 @@ class PycmanInitializer:
         from pycman.utils import print_logo
         print_logo()
         print('==> PycmanInitializer started')
-        self.init_package_module()
-        self.init_pbr()
-        self.init_requirements()
-        self.init_readme()
-        self.init_git()
+        self.__do_build()
         print('==> All done.')
-
-    def init_package_module(self):
-        print(' -> create package.py...')
-        with open(os.path.join(self.context, 'package.py'), 'w', encoding='utf-8') as f:
-            f.write(PACKAGE_CONTENTS.strip() % (self.name, self.author, self.email))
-
-    def init_pbr(self):
-        print(' -> create pbr files...')
-        pbr_cfg = PBR_CONFIG % (self.name, self.author, self.email, self.name)
-
-        with open(os.path.join(self.context, 'setup.cfg'), 'w', encoding="utf-8") as cfg:
-            cfg.write(pbr_cfg)
-
-        with open(os.path.join(self.context, 'setup.py'), 'w', encoding="utf-8") as cfg:
-            cfg.write(SETUP_SCRIPT)
-
-    def init_requirements(self):
-        print(' -> create requirements.txt...')
-        default_requirements = []
-        with open(os.path.join(self.context, 'requirements.txt'), 'w', encoding='utf-8') as f:
-            f.write('\n'.join(default_requirements))
-
-    def init_git(self):
-        """
-        请在 package_module 初始化完成后调用
-        """
-        if 'package.py' not in os.listdir():
-            os.chdir(self.context)
-
-        # if '.git' not in os.listdir():
-        #     os.system('git init')
-
-        if '.gitignore' not in os.listdir():
-            print(' -> create .gitignore...')
-            default_ignores = ['venv/', '__pycache__/',
-                               '*.ini', '.eggs/', '*.egg-info', 'dist/', 'build/']
-            with open(os.path.join(self.context, '.gitignore'), 'w', encoding='utf-8') as f:
-                f.write('\n'.join(default_ignores))
-
-    def init_readme(self):
-        print(' -> create readme docs...')
-        if not os.path.exists(os.path.join(self.context, 'README.rst')):
-            with open(os.path.join(self.context, 'README.rst'), 'w', encoding="utf-8") as rst:
-                rst.write(self.name)
-
-        if not os.path.exists(os.path.join(self.context, 'README.md')):
-            with open(os.path.join(self.context, 'README.md'), 'w', encoding="utf-8") as md:
-                md.write("# %s" % self.name)

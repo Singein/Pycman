@@ -2,16 +2,12 @@ from __future__ import annotations
 
 import os
 
+from pycman.core.initializer import AbstractBuilder
 from pycman.utils.common import goto
 from pycman.utils.common import import_module
 
 
 def test_goto():
-    """
-
-    Returns:
-
-    """
     current_path = os.getcwd()
     parent_path = os.path.dirname(current_path)
     with goto(parent_path):
@@ -21,10 +17,10 @@ def test_goto():
 
 
 def test_builder():
-    import_module()
-    print(builders)
+    builders = import_module()
+    assert builders is not None
 
-
-if __name__ == '__main__':
-    test_builder()
-    pass
+    builders = AbstractBuilder.get_builders()
+    assert len(builders) >= 0
+    for index in range(len(builders) - 1):
+        assert builders[index] < builders[index + 1]
