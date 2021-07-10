@@ -2,7 +2,7 @@ from pycman.utils.common import datetime_format
 
 package = {
     'name': 'Pycman',
-    'version': '1.1.0',
+    'version': '1.1.1',
     'author': 'singein',
     'email': 'singein@outlook.com',
     "scripts": {
