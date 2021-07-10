@@ -5,13 +5,8 @@ import sys
 
 from pycman.utils import print_logo
 
-# 动态导入，避免重复冲突
-version = importlib.import_module('pycman').__version__
 
-
-def get_version(self: bool = True) -> str:
-    if self:
-        return version
+def get_version() -> str:
     context = os.path.abspath(os.getcwd())
     sys.path.append(context)
     package = importlib.import_module('package')
@@ -21,7 +16,7 @@ def get_version(self: bool = True) -> str:
 def show_version():
     print_logo()
     print("")
-    print(f"version: {version}")
+    print(f"version: {get_version()}")
 
 
 def mark_version(version: str = None) -> str:
@@ -32,7 +27,7 @@ def mark_version(version: str = None) -> str:
     """
 
     if not version:
-        print('Current version: %s' % get_version(self=False))
+        print('Current version: %s' % get_version())
         version = input('Please enter a new version number: v')
 
     is_version_legal = re.match(r'[0-9]+\.[0-9]+\.[0-9]+$', version)
