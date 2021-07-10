@@ -1,23 +1,19 @@
 CHANGES
 =======
 
-v1.0.2
+v1.1.0
 ------
 
+* [release] 1.1.0
+* 新增单元测试
+* refactor(whole): 重构，修改设计
+* docs(ChangeLog): update ChangeLog about version[1.0.2]
 * [release] 1.0.2
 * docs(ChangeLog): update ChangeLog about version[1.0.1]
-
-v1.0.1
-------
-
 * [release] 1.0.1
 * docs(ChangeLog): update ChangeLog about version[1.0.0]
 * 修改init文件中的版本号
 * docs(ChangeLog): update ChangeLog about version[1.0.0]
-
-v1.0.0
-------
-
 * [release] 1.0.0
 * fix(cli): 修复init
 * fix(setup.cfg): 修复ent\_points
